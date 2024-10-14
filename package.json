@@ -25,18 +25,28 @@
     "properties": {
       "fileS2TConverter.inputFolder": {
         "type": "string",
-        "default": "input",
+        "default": "i18n/zh-Hans",
         "description": "需要监测的输入文件夹路径。"
       },
       "fileS2TConverter.outputFolder": {
         "type": "string",
-        "default": "output",
+        "default": "i18n/zh-Hant",
         "description": "转换后输出的文件夹路径。"
       },
       "fileS2TConverter.fileSuffixList": {
         "type": "array",
         "default": ["ts"],
         "description": "需要监听的文件后缀列表。"
+      },
+      "fileS2TConverter.langFrom": {
+        "type": ["cn", "tw", "twp", "hk", "jp", "t"],
+        "default": "cn",
+        "description": "转换前的语言('cn' | 'tw' | 'twp' | 'hk' | 'jp' | 't')"
+      },
+      "fileS2TConverter.langTo": {
+        "type": ["cn", "tw", "twp", "hk", "jp", "t"],
+        "default": "twp",
+        "description": "转换后的语言('cn' | 'tw' | 'twp' | 'hk' | 'jp' | 't')"
       }
     }
   },

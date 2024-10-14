@@ -40,6 +40,8 @@ export function activate(context: vscode.ExtensionContext) {
     const inputFolder = config.get<string>('inputFolder');
     const outputFolder = config.get<string>('outputFolder');
     const fileSuffixList = config.get<string[]>('fileSuffixList');
+    const langFrom = config.get<string>('langFrom');
+    const langTo = config.get<string>('langTo');
 
     if (!inputFolder || !outputFolder) {
       vscode.window.showErrorMessage('请在设置中配置输入和输出文件夹路径。');
@@ -111,7 +113,7 @@ export function activate(context: vscode.ExtensionContext) {
       // }
       // 生成转换器
       const converter = OpenCC.Converter(
-        { from: 'cn', to: 'hk' }
+        { from: langFrom as any, to: langTo as any}
       );
       
 
