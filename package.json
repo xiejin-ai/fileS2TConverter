@@ -47,8 +47,7 @@
           "description": "需要监听的文件后缀列表。",
           "items": {
             "type": "string",
-            "pattern": "^\\.[a-zA-Z0-9]+$",
-            "description": "文件扩展名，例如 '.ts'、'.js'。"
+            "description": "文件扩展名，例如 'ts'、'js'。"
           }
         },
         "fileS2TConverter.langFrom": {
