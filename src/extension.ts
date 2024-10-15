@@ -69,7 +69,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     
     // 创建 FileSystemWatcher 仅监听输入文件夹
-    const watcher = vscode.workspace.createFileSystemWatcher(fileSuffixList&& fileSuffixList?.length > 0? `**/*.${fileSuffixList.join(',')}`: '**/*', false, false, false);
+    const watcher = vscode.workspace.createFileSystemWatcher(fileSuffixList&& fileSuffixList?.length > 0? `**/${inputFolder}/*.${fileSuffixList.join(',')}`: `**/${inputFolder}/*`, false, false, false);
 
     // 处理文件变化的函数
     const handleFileChange = async (uri: vscode.Uri) => {

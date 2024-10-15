@@ -6,60 +6,104 @@
   "engines": {
     "vscode": "^1.94.0"
   },
-  "activationEvents":["fileS2TConverter.start"],
+  "activationEvents": [
+    "fileS2TConverter.start",
+    "fileS2TConverter.stop"
+  ],
   "categories": [
     "Other"
   ],
-
   "main": "./dist/extension.js",
   "contributes": {
-  "commands": [
-    {
-      "command": "fileS2TConverter.start",
-      "title": "开始简体到繁体转换监测"
-    }
-  ],
-  "configuration": {
-    "type": "object",
-    "title": "简体到繁体转换器",
-    "properties": {
-      "fileS2TConverter.inputFolder": {
-        "type": "string",
-        "default": "i18n/zh-Hans",
-        "description": "需要监测的输入文件夹路径。"
-      },
-      "fileS2TConverter.outputFolder": {
-        "type": "string",
-        "default": "i18n/zh-Hant",
-        "description": "转换后输出的文件夹路径。"
-      },
-      "fileS2TConverter.fileSuffixList": {
-        "type": "array",
-        "default": ["ts"],
-        "description": "需要监听的文件后缀列表。"
-      },
-      "fileS2TConverter.langFrom": {
-        "type": ["cn", "tw", "twp", "hk", "jp", "t"],
-        "default": "cn",
-        "description": "转换前的语言('cn' | 'tw' | 'twp' | 'hk' | 'jp' | 't')"
-      },
-      "fileS2TConverter.langTo": {
-        "type": ["cn", "tw", "twp", "hk", "jp", "t"],
-        "default": "twp",
-        "description": "转换后的语言('cn' | 'tw' | 'twp' | 'hk' | 'jp' | 't')"
-      }
-    }
-  },
-  "menus": {
-    "commandPalette": [
+    "commands": [
       {
         "command": "fileS2TConverter.start",
-        "group": "navigation"
+        "title": "开始简体到繁体转换监测"
+      },
+      {
+        "command": "fileS2TConverter.stop",
+        "title": "停止简体到繁体转换监测"
       }
-    ]
-  }
-},
-
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "简体到繁体转换器",
+      "properties": {
+        "fileS2TConverter.inputFolder": {
+          "type": "string",
+          "default": "i18n/zh-Hans",
+          "description": "需要监测的输入文件夹路径。"
+        },
+        "fileS2TConverter.outputFolder": {
+          "type": "string",
+          "default": "i18n/zh-Hant",
+          "description": "转换后输出的文件夹路径。"
+        },
+        "fileS2TConverter.fileSuffixList": {
+          "type": "array",
+          "default": [
+            ".ts"
+          ],
+          "description": "需要监听的文件后缀列表。",
+          "items": {
+            "type": "string",
+            "pattern": "^\\.[a-zA-Z0-9]+$",
+            "description": "文件扩展名，例如 '.ts'、'.js'。"
+          }
+        },
+        "fileS2TConverter.langFrom": {
+          "type": "string",
+          "default": "cn",
+          "description": "转换前的语言。",
+          "enum": [
+            "cn",
+            "tw",
+            "twp",
+            "hk",
+            "jp",
+            "t"
+          ],
+          "enumDescriptions": [
+            "简体中文 (cn)",
+            "繁体中文 (tw)",
+            "繁体中文 - 台湾 (twp)",
+            "繁体中文 - 香港 (hk)",
+            "日语 (jp)",
+            "其他 (t)"
+          ]
+        },
+        "fileS2TConverter.langTo": {
+          "type": "string",
+          "default": "twp",
+          "description": "转换后的语言。",
+          "enum": [
+            "cn",
+            "tw",
+            "twp",
+            "hk",
+            "jp",
+            "t"
+          ],
+          "enumDescriptions": [
+            "简体中文 (cn)",
+            "繁体中文 (tw)",
+            "繁体中文 - 台湾 (twp)",
+            "繁体中文 - 香港 (hk)",
+            "日语 (jp)",
+            "其他 (t)"
+          ]
+        }
+      }
+    },
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "fileS2TConverter.start",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
   "scripts": {
     "vscode:prepublish": "npm run package",
     "compile": "webpack",
