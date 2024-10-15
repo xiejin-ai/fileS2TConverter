@@ -3,6 +3,7 @@
   "displayName": "file-s2t-converter",
   "description": "监测文件夹中的文件更新，将简体中文转换为繁体中文。",
   "version": "0.0.1",
+  "publisher": "xiejin", 
   "engines": {
     "vscode": "^1.94.0"
   },
