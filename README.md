@@ -23,24 +23,25 @@ File S2T Converter 是一个用于转换文件语言的 VSCode 扩展。它能�
 
 ## 配置
 您可以通过 VSCode 的设置界面或直接编辑 settings.json 文件来配置扩展。以下是各项配置的详细说明：
-设置路径: fileS2TConverter.inputFolder
+
+-设置路径: fileS2TConverter.inputFolder
 默认值: i18n/zh-Hans
 描述: 需要监测的输入文件夹路径。
 
-设置路径: fileS2TConverter.outputFolder
+-设置路径: fileS2TConverter.outputFolder
 默认值: i18n/zh-Hant
 描述: 转换后输出的文件夹路径。
 
-设置路径: fileS2TConverter.fileSuffixList
+-设置路径: fileS2TConverter.fileSuffixList
 默认值: [".ts"]
 描述: 需要监听的文件后缀列表。
 
-设置路径: fileS2TConverter.langFrom
+-设置路径: fileS2TConverter.langFrom
 默认值: cn
 描述: 转换前的语言。
 可选值: cn（简体中文）、tw（繁体中文）、twp（繁体中文 - 台湾）、hk（繁体中文 - 香港）、jp（日语）、t（其他）
 
-设置路径: fileS2TConverter.langTo
+-设置路径: fileS2TConverter.langTo
 默认值: twp
 描述: 转换后的语言。
 可选值: cn（简体中文）、tw（繁体中文）、twp（繁体中文 - 台湾）、hk（繁体中文 - 香港）、jp（日语）、t（其他）

@@ -1,9 +1,9 @@
 {
   "name": "file-s2t-converter",
   "displayName": "file-s2t-converter",
-  "description": "监测文件夹中的文件更新，将简体中文转换为繁体中文。",
+  "description": "监测文件夹中的文件更新，将简体中文转换为其他语言。",
   "version": "0.0.1",
-  "publisher": "xiejin", 
+  "publisher": "xiejin",
   "engines": {
     "vscode": "^1.94.0"
   },
@@ -19,79 +19,69 @@
     "commands": [
       {
         "command": "fileS2TConverter.start",
-        "title": "开始简体到繁体转换监测"
+        "title": "开始文件翻译监测"
       },
       {
         "command": "fileS2TConverter.stop",
-        "title": "停止简体到繁体转换监测"
+        "title": "停止文件翻译监测"
+      },
+      {
+        "command": "fileS2TConverter.convert",
+        "title": "立即翻译文件"
+      },
+      {
+        "command": "fileS2TConverter.convertCurrentFile",
+        "title": "立即翻译当前文件"
       }
     ],
     "configuration": {
       "type": "object",
-      "title": "简体到繁体转换器",
+      "title": "文件翻译转换器",
       "properties": {
+        "fileS2TConverter.apiKey": {
+          "type": "string",
+          "description": "API 密钥。"
+        },
         "fileS2TConverter.inputFolder": {
           "type": "string",
           "default": "i18n/zh-Hans",
           "description": "需要监测的输入文件夹路径。"
         },
-        "fileS2TConverter.outputFolder": {
-          "type": "string",
-          "default": "i18n/zh-Hant",
-          "description": "转换后输出的文件夹路径。"
-        },
-        "fileS2TConverter.fileSuffixList": {
+        "fileS2TConverter.outputConfigs": {
           "type": "array",
           "default": [
-            ".ts"
+            {
+              "folder": "i18n/zh-Hant",
+              "isOpencc": true,
+              "language": "tw"
+            },
+
+            {
+              "folder": "i18n/en-US",
+              "isOpencc": false,
+              "language": "en"
+            }
           ],
-          "description": "需要监听的文件后缀列表。",
           "items": {
-            "type": "string",
-            "description": "文件扩展名，例如 'ts'、'js'。"
-          }
-        },
-        "fileS2TConverter.langFrom": {
-          "type": "string",
-          "default": "cn",
-          "description": "转换前的语言。",
-          "enum": [
-            "cn",
-            "tw",
-            "twp",
-            "hk",
-            "jp",
-            "t"
-          ],
-          "enumDescriptions": [
-            "简体中文 (cn)",
-            "繁体中文 (tw)",
-            "繁体中文 - 台湾 (twp)",
-            "繁体中文 - 香港 (hk)",
-            "日语 (jp)",
-            "其他 (t)"
-          ]
-        },
-        "fileS2TConverter.langTo": {
-          "type": "string",
-          "default": "twp",
-          "description": "转换后的语言。",
-          "enum": [
-            "cn",
-            "tw",
-            "twp",
-            "hk",
-            "jp",
-            "t"
-          ],
-          "enumDescriptions": [
-            "简体中文 (cn)",
-            "繁体中文 (tw)",
-            "繁体中文 - 台湾 (twp)",
-            "繁体中文 - 香港 (hk)",
-            "日语 (jp)",
-            "其他 (t)"
-          ]
+            "type": "object",
+            "properties": {
+              "folder": {
+                "type": "string",
+                "description": "输出文件夹路径"
+              },
+              "isOpencc": {
+                "type": "boolean",
+                "description": "是否使用 OpenCC 转换"
+              },
+              "language": {
+                "type": "string",
+                "enum": ["cn", "tw", "twp", "hk", "jp", "en"],
+                "description": "目标语言"
+              }
+            },
+            "required": ["folder", "language"]
+          },
+          "description": "输出配置列表，包含输出文件夹和目标语言"
         }
       }
     },
@@ -117,6 +107,7 @@
   },
   "devDependencies": {
     "@types/chokidar": "^2.1.3",
+    "@types/google-translate-api": "^2.3.5",
     "@types/mocha": "^10.0.8",
     "@types/node": "20.x",
     "@types/opencc-js": "^1.0.3",
@@ -133,6 +124,8 @@
   },
   "dependencies": {
     "chokidar": "^4.0.1",
+    "google-translate-api": "^2.3.0",
+    "google-translate-api-browser": "^5.0.0",
     "lodash": "^4.17.21",
     "opencc-js": "^1.0.5"
   }
