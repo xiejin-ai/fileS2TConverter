@@ -477,7 +477,7 @@ async function convertJsonRecursively(input: any, output: any, apiKey: string, t
       const result = applyTranslations(input, output);
       return result;
 
-    } catch (error) {
+    } catch (error :any) {
       console.error('JSON 翻译失败：', error);
       vscode.window.showErrorMessage(`JSON 翻译失败：${error.message}`);
       

@@ -2,7 +2,7 @@
   "name": "file-s2t-converter",
   "displayName": "file-s2t-converter",
   "description": "监测文件夹中的文件更新，将简体中文转换为其他语言。",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "publisher": "xiejin",
   "engines": {
     "vscode": "^1.94.0"
@@ -53,7 +53,7 @@
             {
               "folder": "i18n/zh-Hant",
               "isOpencc": true,
-              "language": "tw"
+              "language": "twp"
             },
 
             {
@@ -75,7 +75,6 @@
               },
               "language": {
                 "type": "string",
-                "enum": ["cn", "tw", "twp", "hk", "jp", "en"],
                 "description": "目标语言"
               }
             },
